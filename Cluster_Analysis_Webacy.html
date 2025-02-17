@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Portfolio</title>
+    <style>
+ 
+        #about p {
+        font-size: 18px !important; /* Apply size with high priority */
+        line-height: 1.7 !important;
+        }
+    /* Global paragraph styling */
+         body p {
+        font-size: 16px !important; /* Apply size with high priority */
+        line-height: 1.7 !important;
+        }
+        #about .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically if needed */
+    text-align: center; /* Centers the text */
+    max-width: 2000px; /* Adjust width as needed */
+    margin: 0 auto; /* Centers the container */
+    }
+    </style>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+
+<body class="second-page">
+    <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <!-- End #mobile-menu-toggle -->
+    <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <li>
+                <a href="index.html" onclick="window.location.href='index.html'; return true;"> Back to Main Menu</a>
+            </li>
+        </ul>
+    </header>
+    <!-- End header -->
+    <!-- End header -->
+
+    <div id="lead">
+        <div id="lead-content">
+            <h1> Cluster Analysis of Smart Contracts Risks </h1>
+            <h2> Performed Using Python And Webscraping </h2>
+        </div>
+        <!-- End #lead-content -->
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+        </div>
+        <!-- End #lead-down -->
+    </div>
+    <!-- End #lead -->
+
+    <div id="github-link" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                    <h3>
+                        To view all the files I used to create this project, visit my <a href="https://github.com/DRehan003/Cluster_Analysis_Webacy" target="_blank"><strong>GitHub</strong></a>.
+                    </h3>
+            </div>
+            <!-- End .row -->
+        </div>
+        <!-- End .container -->
+    </div>
+
+
+    <div id="overview" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 h2 class="heading"> Overview </h2>
+                <p><strong>Objective: </strong>
+                Perform analysis and visualization of stock performance using Python and webscraping. The project involves extracting stock data from Yahoo Finance, analyzing the data, and visualizing the stock performance using the pandas, numpy, matplotlib, and seaborn libraries.</p>
+                </p>
+                <p><strong>Essential Terminology: </strong> 
+                        <p>  <strong>1. Smart Contract:</strong> A self-executing program stored on the blockchain that automatically carries out an agreement when certain conditions are met without needing a middleman.</p>
+                    
+                    <p> - For Example: Let’s say you want to buy a digital artwork. A smart contract can be set up so that as soon as you send the payment, the artwork is automatically transferred to you. No need for a third party like PayPal or a bank.</p>
+                    
+                    <p>- Smart contracts' use cases are ever-growing. They can even be used for something as simple as a pair of friends making a bet on which team will win a sports game.</p>
+                    
+                    <p><strong>- Why Are They Important?</strong></p>
+                    <ul>
+                      <li><strong>No Middlemen:</strong> No banks, lawyers, or companies are needed to enforce the contract.</li>
+                      <li><strong>Transparent:</strong> Everyone can see how the contract works (no hidden rules).</li>
+                      <li><strong>Secure & Immutable:</strong> Once written on the blockchain, it can’t be changed or tampered with.</li>
+                    </ul>
+                    <p><strong>2. Risk Tag:</strong> Think of risk tags like warning labels on food—they alert you to potential dangers before you interact with a wallet or contract. These risk tags are provided by Webacy, a security platform that helps protect crypto and NFT assets. There are a total of 32 risk tags, each representing a different type of risk.</p>
+                    
+                    <p><strong> - What do they detect?</strong></p>
+                    <ul>
+                      <li>Risks of a contract taking your funds through scam, hacks, or fraud.</li>
+                      <li>Hacking of your tokens.</li>
+                      <li>Suspicious activity, such as involvement in shady transactions.</li>
+                      <li>Fake contracts mimicking legitimate ones.</li>
+                    </ul>
+                    
+                </div>
+                <!-- End .row -->
+                <br>
+
+                <h2 h2 class="heading"> Steps: </h2>
+        <h2>Step 1: Import the Necessary Libraries and Load the Dataset</h2>
+        <p>The libraries used in this project are:</p>
+        <ul>
+            <li>Pandas</li>
+            <li>Numpy</li>
+            <li>Matplotlib</li>
+            <li>Seaborn</li>
+            <li>Scipy</li>
+        </ul>
+        <p>The dataset you will be using is a <strong>"compiled_risk_dataset"</strong>. What exactly is in this dataset? This dataset contains 1094 entries of smart contract vulnerabilties. The first 3 columns contain essential information about the smart contract: the project name, the smart contract address, and the chain. The remaining columns are 32 potential risk tags that may be present in any given smart contract. The dataset is essentially a table that lists what specific risks are present in each contract.</p>
+        <p>Download the dataset and save it into a pandas dataframe. Use the <code>.head()</code> function to print the first five rows and ensure it matches the following:</p>
+        <img src="images/Dataset_first_5_rows (1).png" alt = "First five rows of the dataset">
+        <br>
+        <br>
+        <h2>Step 2: Perform Feature Selection</h2>
+        <p>Feature selection is the process of selecting the most important variables from your dataset that contribute the most to the predictive power of your model. This helps improve the model’s performance, reduce complexity, and speed up training.</p>
+        <p>For this project, I selected the following features:</p>
+        <ul>
+            <li><strong>hidden_owner:</strong> Indicates the true owner of the smart contract. Making the owner public ensures transparency between the owner and customer/client.</li>
+            <li><strong>Is_honeypot:</strong> Type of deceptive contract designed to lure users into sending funds or interacting with it, only to discover that they cannot withdraw or access their funds later.</li>
+            <li><strong>exploitation:</strong> Where vulnerabilities or flaws in a smart contract are taken advantage of by malicious actors to perform actions that were not intended by the contract's creators. These include unauthorized access, stealing funds, altering contract behavior, or manipulating data.</li>
+        </ul>
+        <p>I chose these 3 risk tags since they encompass broad, yet important, domains of security in smart contracts. </p>
+        <p>Use the following code to convert True/False values into binary form:</p>
+        <pre><code>selected_features = data_new[[feature_1, feature_2, feature_3]].replace({True: 1, False: 0})</code></pre>
+        <br>
+        <h2>Step 3: Compute the Jaccard Distance</h2>
+        <p>The Jaccard Distance is a metric used to compare the similarity and diversity of two sets. In cluster analysis, Jaccard distance is a useful measure when you are working with data that can be represented as sets or binary attributes. It helps in determining the dissimilarity between data points.</p>
+        <p> Use the following code to compute it:</p>
+        <pre><code>from scipy.spatial.distance import pdist, squareform</code></pre>
+        <pre><code>distance_matrix = pdist(selected_features, 'jaccard')</code></pre>
+        <pre><code>distance_square_matrix = squareform(distance_matrix)</code></pre>
+        <br>
+        <h2>Step 4: Perform Clustering</h2>
+        <p>
+            Cluster analysis is a way to group things that are similar to each other. It is a form of unsupervised machine learning. Imagine you have a collection of items, and you want to sort them into groups based on their characteristics. Cluster analysis helps you automatically find these groups, or clusters, without needing to tell the computer exactly what the groups are in advance.
+        </p>
+        <p> Use the following code to perform clustering:</p>
+        <pre><code>import scipy.cluster.hierarchy as sch</code></pre>
+        <pre><code>linkage_matrix = sch.linkage(distance_matrix, method='ward')</code></pre>
+        <br>
+        <h2>Step 5: Plot a Dendrogram</h2>
+        <p>Now it is time to visualize our analysis. Use the following code to plot the dendogram:</p>
+        <pre><code>plt.figure(figsize=(10, 7))</code></pre>
+        <pre><code>dendrogram = sch.dendrogram(linkage_matrix)</code></pre>
+        <pre><code>plt.title('Hierarchical Clustering Dendrogram')</code></pre>
+        <pre><code>plt.xlabel('Data points')</code></pre>
+        <pre><code>plt.ylabel('Jaccard distance')</code></pre>
+        <pre><code>plt.show()</code></pre>
+        <p>If you selected the same features as I did, the dendrogram will look like this:</p>
+        <img src="images/Dendogram.jpg" alt="Dendrogram image">
+        <p>However, if you selected different features or less/more than 3 features, your dendogram can look very different.</p>
+        <p>For example, as an experiment I went back and changed the feature selection on my analysis. Not only did I select completely different features, but I went from 3 features to 7.</p>
+
+        <p>The features I selected were:</p>
+        <ul>
+        <li>exploitation</li>
+        <li>bad_contract</li>
+        <li>external_dependencies</li>
+        <li>centralized_risk_medium</li>
+        <li>encode_packed_parameters</li>
+        <li>can_take_back_ownership</li>
+        <li>owner_change_balance</li>
+        </ul>
+
+        <p>The outcome of this dendogram is as shown below:</p>
+        <img src="images/Dendogram_2.jpg" alt="Dendrogram image">
+        <p>What does the dendrogram show us? </p>
+        <p> A Dendogram is a tree-like diagram that shows the hierarchical relationships between data points. It visually represents how clusters are merged or split based on similarity or distance. The vertical axis typically shows the level of similarity (or distance) between clusters, while the horizontal axis represents the individual data points or clusters. The branches merge as the clusters become more similar, with shorter branches indicating higher similarity. By analyzing the dendrogram, you can determine the optimal number of clusters and see which items are closely related based on their features.</p>
+        <p>
+            We can learn a lot from the denogram, but lets use a different form of visualization that maybe more helpful.
+        </p>
+        <br>
+        <h2>Step 6: Plot a Heat Map</h2>
+        <p>Additionally, you can create a heat map as an alternative way to visualize the analysis. Use the following code to plot the heatmap:</p>
+        <pre><code>cluster_centers = data_new[[feature_1, feature_2, feature_3, 'cluster']].groupby('cluster').mean()</code></pre>
+        <pre><code>plt.figure(figsize=(12, 8))</code></pre>
+        <pre><code>sns.heatmap(cluster_centers, annot=True, cmap='coolwarm')</code></pre>
+        <pre><code>plt.title('Heatmap of Cluster Centroids')</code></pre>
+        <pre><code>plt.show()</code></pre>
+        <p>The heatmap for the original feature selection will look like this:</p>
+        <img src="images/Heatmap.png" alt="Heatmap image">
+        <br>
+        <br>
+        <p>The heatmap for the second features selection I perfomed will look like this:</p>
+        <img src="images/Heatmap_2.png" alt="Heatmap image">
+        <br>
+        <p>The more warm (red) a sect in the heatmap is, the more of that particular risk tag is present. For example, in the second heatmap we can see that in cluster 6, 57% of the contracts have the centralized_risk_medium tag. Whereas in clusters 1-4, we can see the centralized_risk_medium tag is not present in any of them.</p>
+        <p><strong>What does the heatmap show us?</strong></p>
+        <p>The risk level of each cluster grows from 1 through 7; 1 being the least risky.</p>
+
+        <p><strong>What are some more detailed insights we can take away?</strong></p>
+        <ul>
+        <li>Contracts in cluster 1 possess negligible or no vulnerabilities.</li>
+        <li>The can_take_back_ownership tag is particularly strong in cluster 7.</li>
+        <li>Exploitation is particularly strong in clusters 2 and 6, therefore must focus on minimizing their vulnerabilities from potential loss of funds.</li>
+        <li>Contracts in clusters 4 and 5 must focus most on decreasing their dependence on external systems and/or contracts.</li>
+        <li>Contracts in clusters 6 and 7 need to be deeply reevaluated from top to bottom as they contain risks in all 7 selected features.</li>
+        <li>Contracts in cluster 6 are the most vulnerable for potential loss of funds out of all 7 clusters.</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2025</span> Danyal Rehan
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/DRehan003" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/danyal-rehan/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@danyalrehan" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+</body>
+
+</html>
+

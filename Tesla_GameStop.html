@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Portfolio</title>
+    <style>
+ 
+        #about p {
+        font-size: 18px !important; /* Apply size with high priority */
+        line-height: 1.7 !important;
+        }
+    /* Global paragraph styling */
+         body p {
+        font-size: 16px !important; /* Apply size with high priority */
+        line-height: 1.7 !important;
+        }
+        #about .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically if needed */
+    text-align: center; /* Centers the text */
+    max-width: 2000px; /* Adjust width as needed */
+    margin: 0 auto; /* Centers the container */
+    }
+    </style>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body class="second-page">
+    <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <!-- End #mobile-menu-toggle -->
+    <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <li>
+                <a href="index.html" onclick="window.location.href='index.html'; return true;"> Back to Main Menu</a>
+            </li>
+        </ul>
+    </header>
+    <!-- End header -->
+    <!-- End header -->
+
+    <div id="lead">
+        <div id="lead-content">
+            <h1> Analysis and Visualization of Stock Performance </h1>
+            <h2> Performed Using Python And Webscraping </h2>
+        </div>
+        <!-- End #lead-content -->
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+        </div>
+        <!-- End #lead-down -->
+    </div>
+    <!-- End #lead -->
+
+    <div id="github-link" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                    <h3>
+                        To view all the files I used to create this project, visit my <a href="https://github.com/DRehan003/Analysis_And_Visualization_Of_Stock_Performance" target="_blank"><strong>GitHub</strong></a>.
+                    </h3>
+            </div>
+            <!-- End .row -->
+        </div>
+        <!-- End .container -->
+    </div>
+
+    <div id="overview" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                    <h2 h2 class="heading"> Overview </h2>
+                        <p><strong>Scenario:</strong><br>
+                        For this project, you will assume the role of a Data Scientist working for an investment firm that helps customers invest their money in stocks. Your job is to extract financial data like historical share price and quarterly revenue reportings from various sources using Python libraries and webscraping on popular stocks. After collecting this data you will visualize it in a dashboard to identify patterns or trends. The stocks we will work with are Tesla and GameStop.</p>
+                        <br>
+                        <p><strong>Understanding Stock Shares and yfinance:</strong><br>
+                        An investor can buy a stock and sell it later. If the stock price increases, the investor profits, If it decreases, the investor will incur a loss. Determining the stock price is complex; it depends on the number of outstanding shares, the size of the company's future profits, and much more. People trade stocks throughout the day. The stock ticker is a report of the price of a certain stock, updated continuously throughout the trading session by the various stock market exchanges. Use the y-finance API to obtain the stock ticker and extract information about the stock.</p>
+                        <br>
+        
+                        <h2 h2 class="heading"> Steps:</h2>
+
+    <h2>Step 1: Import the necessary libraries</h2>
+    
+    <p><strong>Libraries:</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- yfinance<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- pandas<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- requests<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- BeautifulSoup<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- plotly</p>
+    
+    <h2>Step 2: Use yfinance to Extract the Stock Data of Tesla</h2>
+    
+    <ol>
+        <li>Use <strong>yf.Ticker('TSLA')</strong> to extract Tesla stock data and save it into a variable called 'tesla'.</li>
+        <li>Use the ticker object and the function history to extract stock information and save it in a dataframe named tesla_data. Set the period parameter to "max" so we get information for the maximum amount of time.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>tesla_data = tesla.history(period='max')</code></li>
+    </ol>
+    
+    <h2>Step 3: Use Webscraping to Extract Tesla Revenue Data</h2>
+    
+    <ol>
+        <li>Save the URL below to a requests object<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>url = https://www.macrotrends.net/stocks/charts/TSLA/tesla/revenue</code></li>
+        <li>Save the text of the response as a variable named html_data.</li>
+        <li>Parse the html data using beautiful_soup using the parser html.parser.</li>
+        <li>Extract the table on the webpage and store it into a dataframe named tesla_revenue. The column names should be "Date" and "Revenue".</li>
+        <li>Run the following line to remove the comma and dollar sign from the Revenue column.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>tesla_revenue["Revenue"] = tesla_revenue['Revenue'].str.replace(',|\$',"")</code></li>
+    </ol>
+    
+    <h2>Step 4: Use yfinance to Extract the Stock Data of GameStop</h2>
+    
+    <ol>
+        <li>Use <strong>yf.Ticker('GME')</strong> to extract GameStop stock data and save it into a variable called 'gamestop'.</li>
+        <li>Use the ticker object and the function history to extract stock information and save it in a dataframe named gamestop_data. Set the period parameter to "max" so we get information for the maximum amount of time.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gamestop_data = gamestop.history(period='max')</code></li>
+    </ol>
+    
+    <h2>Step 5: Use Webscraping to Extract GameStop Revenue Data</h2>
+    
+    <ol>
+        <li>Save the URL below to a requests object<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>url = https://www.macrotrends.net/stocks/charts/GME/gamestop/revenue</code></li>
+        <li>Save the text of the response as a variable named html_data.</li>
+        <li>Parse the html data using beautiful_soup using the parser html.parser.</li>
+        <li>Extract the table on the webpage and store it into a dataframe named gamestop_revenue. The column names should be "Date" and "Revenue".</li>
+        <li>Run the following line to remove the comma and dollar sign from the Revenue column.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>gamestop["Revenue"] = gamestop['Revenue'].str.replace(',|\$',"")</code></li>
+    </ol>
+    
+    <h2>Step 6: Create Graphs</h2>
+    
+    <p>Create a function called <strong>make_graph</strong> that takes 3 parameters: stock_data, revenue_data, and company_name.</p>
+    
+    <h3>The Tesla graph:</h3>
+    <img src="images/Tesla_Graphs.png" alt="Tesla Stock Graph">
+    <br>
+    
+    <h3>Insights:</h3>
+    <ul>
+        <li>Since 2018, Tesla’s share price has seen a significant increase. This is a positive sign for potential investors.</li>
+        <li>The company's revenue shows a steady upward trend, indicating strong increasing sales.</li>
+    </ul>
+    
+    <h3>Final Verdict:</h3>
+    <p>The share price and revenue both increase over time, which suggests that <strong>Tesla’s stock is good to invest in.</strong></p>
+    
+    <br>
+    <br>
+    
+    <h3>The GameStop graph:</h3>
+    <img src="images/GameStop_Graphs.png" alt="GameStop Stock Graph">
+    <br>
+    
+    <h3>Insights:</h3>
+    <ul>
+        <li>The price was stable for years but saw a sharp spike in 2021. Upon further research, this was due to the meme stock phenomenon rather than business growth.</li>
+        <li>GameStop’s revenue is cyclical and does not show consistent long-term growth, indicating potential business struggles. Furthermore, the spikes in revenue only occur towards the end of the year, during the holiday season. This suggests that the company generates its main income from holiday sales.</li>
+    </ul>
+    
+    <h3>Final Verdict:</h3>
+    <p>GameStop is a speculative play with high risk and uncertain future performance. Due to many years of inconsistency, <strong>GameStop’s stock is NOT good to invest in.</strong></p>
+</div>
+</div>
+</div>
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2025</span> Danyal Rehan
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/DRehan003" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/danyal-rehan/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@danyalrehan" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+</body>
+
+</html>
