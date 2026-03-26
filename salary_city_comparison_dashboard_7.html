@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>$100K DFW Salary — City Comparison Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f5f5f3;
+    --color-background-tertiary: #eeede8;
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #6b6b67;
+    --color-text-tertiary: #9e9e99;
+    --color-border-tertiary: rgba(0,0,0,0.12);
+    --color-border-secondary: rgba(0,0,0,0.22);
+    --font-sans: system-ui, -apple-system, sans-serif;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background-primary: #1c1c1a;
+      --color-background-secondary: #252523;
+      --color-background-tertiary: #2e2e2b;
+      --color-text-primary: #f0efea;
+      --color-text-secondary: #a0a09a;
+      --color-text-tertiary: #6b6b65;
+      --color-border-tertiary: rgba(255,255,255,0.1);
+      --color-border-secondary: rgba(255,255,255,0.2);
+    }
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-background-tertiary);
+    color: var(--color-text-primary);
+    padding: 1.5rem;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .top-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 1.5rem; }
+  .top-bar h1 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); flex: 1; min-width: 200px; }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .filter-row label { font-size: 13px; color: var(--color-text-secondary); }
+  .filter-row select, .filter-row input {
+    font-size: 13px; padding: 5px 8px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+  }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.85rem 1rem; }
+  .metric-card .label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .metric-card .value { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .metric-card .sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+  .table-wrap { overflow-x: auto; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); background: var(--color-background-primary); }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 900px; }
+  thead tr { background: var(--color-background-secondary); }
+  thead th { padding: 9px 10px; text-align: left; font-weight: 500; color: var(--color-text-secondary); font-size: 11.5px; border-bottom: 0.5px solid var(--color-border-tertiary); white-space: nowrap; cursor: pointer; user-select: none; }
+  thead th:hover { color: var(--color-text-primary); }
+  tbody tr { border-bottom: 0.5px solid var(--color-border-tertiary); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--color-background-secondary); }
+  tbody tr.dfw-row { background: rgba(59,130,246,0.06); }
+  td { padding: 8px 10px; color: var(--color-text-primary); vertical-align: middle; }
+  td.city-cell { font-weight: 500; white-space: nowrap; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .badge { display: inline-block; font-size: 10.5px; padding: 2px 7px; border-radius: 99px; font-weight: 500; }
+  .badge-up { background: #FCEBEB; color: #A32D2D; }
+  .badge-dn { background: #EAF3DE; color: #3B6D11; }
+  .badge-eq { background: #F1EFE8; color: #5F5E5A; }
+  .badge-base { background: #E6F1FB; color: #185FA5; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 1rem; font-size: 12px; color: var(--color-text-secondary); align-items: center; }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .search-wrap { position: relative; }
+  .search-wrap input { padding-left: 28px; width: 160px; }
+  .search-icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--color-text-tertiary); }
+  .note { font-size: 11.5px; color: var(--color-text-tertiary); margin-top: 1rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <h1>$100,000 DFW salary — equivalent purchasing power across top 30 U.S. cities</h1>
+    <div class="filter-row">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="search" placeholder="Search city..." />
+      </div>
+      <label>Sort by</label>
+      <select id="sortSel">
+        <option value="equiv">Equivalent salary</option>
+        <option value="col">Cost of living index</option>
+        <option value="home">Median home price</option>
+        <option value="rent">Monthly rent</option>
+        <option value="grocery">Grocery index</option>
+      </select>
+      <label>Order</label>
+      <select id="orderSel">
+        <option value="desc">High → Low</option>
+        <option value="asc">Low → High</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="metricCards" class="metrics-grid"></div>
+
+  <div class="legend">
+    <span><span class="dot" style="background:#E24B4A;"></span>More expensive than DFW</span>
+    <span><span class="dot" style="background:#639922;"></span>Less expensive than DFW</span>
+    <span><span class="dot" style="background:#378ADD;"></span>DFW (baseline)</span>
+  </div>
+
+  <div class="table-wrap">
+    <table id="cityTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>City</th>
+          <th>CoL index</th>
+          <th>Equiv. salary</th>
+          <th>Δ vs DFW</th>
+          <th>Median home</th>
+          <th>Equiv. home</th>
+          <th>Rent/mo</th>
+          <th>Gas/gal</th>
+          <th>Grocery idx</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <p class="note">
+    CoL index uses 100 = U.S. national average. DFW baseline CoL ≈ 105. Equivalent salary = $100,000 × (DFW CoL ÷ City CoL).
+    Equivalent home = what a DFW $380,000 median home buys in purchasing-power terms.
+    Data sourced from BLS CPI regional data, Zillow Home Value Index (2024), EIA average gas prices, and Numbeo CoL surveys.
+    Figures are 2024 estimates — verify before making relocation decisions.
+  </p>
+</div>
+
+<script>
+const BASE_SALARY = 100000;
+const DFW_COL = 105;
+const DFW_HOME = 380000;
+
+const cities = [
+  { city:"Dallas–Fort Worth, TX", rank:4,  col:105, home:380000, rent:1750, gas:2.85, grocery:98,  base:true },
+  { city:"New York City, NY",      rank:1,  col:228, home:780000, rent:4200, gas:3.60, grocery:128, base:false },
+  { city:"Los Angeles, CA",        rank:2,  col:193, home:880000, rent:3100, gas:4.20, grocery:115, base:false },
+  { city:"Chicago, IL",            rank:3,  col:118, home:330000, rent:2100, gas:3.10, grocery:102, base:false },
+  { city:"Houston, TX",            rank:5,  col:100, home:305000, rent:1600, gas:2.80, grocery:96,  base:false },
+  { city:"Phoenix, AZ",            rank:6,  col:106, home:415000, rent:1750, gas:3.10, grocery:99,  base:false },
+  { city:"Philadelphia, PA",       rank:7,  col:122, home:340000, rent:2000, gas:3.25, grocery:108, base:false },
+  { city:"San Antonio, TX",        rank:8,  col:91,  home:265000, rent:1350, gas:2.75, grocery:93,  base:false },
+  { city:"San Diego, CA",          rank:9,  col:185, home:860000, rent:2900, gas:4.25, grocery:116, base:false },
+  { city:"San Jose, CA",           rank:10, col:225, home:1350000,rent:3700, gas:4.30, grocery:122, base:false },
+  { city:"Austin, TX",             rank:11, col:120, home:500000, rent:2000, gas:2.90, grocery:102, base:false },
+  { city:"Jacksonville, FL",       rank:12, col:96,  home:295000, rent:1500, gas:3.00, grocery:97,  base:false },
+  { city:"Fort Worth, TX",         rank:13, col:100, home:335000, rent:1600, gas:2.80, grocery:97,  base:false },
+  { city:"Columbus, OH",           rank:14, col:92,  home:275000, rent:1350, gas:2.95, grocery:95,  base:false },
+  { city:"Charlotte, NC",          rank:15, col:99,  home:385000, rent:1750, gas:3.00, grocery:98,  base:false },
+  { city:"Indianapolis, IN",       rank:16, col:88,  home:255000, rent:1250, gas:2.90, grocery:93,  base:false },
+  { city:"San Francisco, CA",      rank:17, col:234, home:1350000,rent:3900, gas:4.50, grocery:130, base:false },
+  { city:"Seattle, WA",            rank:18, col:172, home:800000, rent:2850, gas:3.90, grocery:118, base:false },
+  { city:"Denver, CO",             rank:19, col:135, home:560000, rent:2250, gas:3.30, grocery:106, base:false },
+  { city:"Nashville, TN",          rank:20, col:107, home:445000, rent:1850, gas:2.95, grocery:100, base:false },
+  { city:"Oklahoma City, OK",      rank:21, col:84,  home:210000, rent:1150, gas:2.75, grocery:90,  base:false },
+  { city:"El Paso, TX",            rank:22, col:82,  home:195000, rent:1100, gas:2.70, grocery:88,  base:false },
+  { city:"Washington, DC",         rank:23, col:163, home:620000, rent:2850, gas:3.40, grocery:116, base:false },
+  { city:"Las Vegas, NV",          rank:24, col:114, home:415000, rent:1750, gas:3.20, grocery:102, base:false },
+  { city:"Louisville, KY",         rank:25, col:88,  home:235000, rent:1200, gas:2.90, grocery:91,  base:false },
+  { city:"Memphis, TN",            rank:26, col:82,  home:195000, rent:1100, gas:2.80, grocery:90,  base:false },
+  { city:"Portland, OR",           rank:27, col:145, home:530000, rent:2300, gas:3.80, grocery:112, base:false },
+  { city:"Baltimore, MD",          rank:28, col:121, home:320000, rent:1900, gas:3.30, grocery:107, base:false },
+  { city:"Milwaukee, WI",          rank:29, col:94,  home:245000, rent:1350, gas:3.00, grocery:95,  base:false },
+  { city:"Albuquerque, NM",        rank:30, col:92,  home:280000, rent:1250, gas:2.90, grocery:94,  base:false },
+];
+
+function equiv(city) { return Math.round(BASE_SALARY * DFW_COL / city.col); }
+function equivHome(city) { return Math.round(DFW_HOME * DFW_COL / city.col); }
+function delta(city) { return equiv(city) - BASE_SALARY; }
+function fmt(n) { return '$' + n.toLocaleString(); }
+function pct(n) { return (n > 0 ? '+' : '') + Math.round(n / BASE_SALARY * 100) + '%'; }
+
+function verdict(city) {
+  const e = equiv(city);
+  if (city.base) return '<span class="badge badge-base">Baseline</span>';
+  if (e >= 115000) return '<span class="badge badge-dn">Great value</span>';
+  if (e >= 103000) return '<span class="badge badge-dn">Slight gain</span>';
+  if (e >= 97000)  return '<span class="badge badge-eq">About same</span>';
+  if (e >= 80000)  return '<span class="badge badge-up">Costly</span>';
+  return '<span class="badge badge-up">Very costly</span>';
+}
+
+let sortKey = 'equiv';
+let sortOrder = 'desc';
+let searchVal = '';
+
+function getSortVal(c) {
+  if (sortKey === 'equiv') return equiv(c);
+  if (sortKey === 'col') return c.col;
+  if (sortKey === 'home') return c.home;
+  if (sortKey === 'rent') return c.rent;
+  if (sortKey === 'grocery') return c.grocery;
+  return equiv(c);
+}
+
+function render() {
+  let data = cities.filter(c => c.city.toLowerCase().includes(searchVal.toLowerCase()));
+  data.sort((a, b) => sortOrder === 'desc' ? getSortVal(b) - getSortVal(a) : getSortVal(a) - getSortVal(b));
+
+  const cheapest = cities.slice().sort((a, b) => equiv(b) - equiv(a))[0];
+  const mostExpensive = cities.slice().sort((a, b) => equiv(a) - equiv(b))[0];
+  const avgEquiv = Math.round(cities.reduce((s, c) => s + equiv(c), 0) / cities.length);
+
+  document.getElementById('metricCards').innerHTML = `
+    <div class="metric-card"><div class="label">Your DFW salary</div><div class="value">${fmt(BASE_SALARY)}</div><div class="sub">Baseline city</div></div>
+    <div class="metric-card"><div class="label">Avg. equivalent (30 cities)</div><div class="value">${fmt(avgEquiv)}</div><div class="sub">Most cities are pricier</div></div>
+    <div class="metric-card"><div class="label">Best value city</div><div class="value">${cheapest.city.split(',')[0]}</div><div class="sub">Equiv. ${fmt(equiv(cheapest))}</div></div>
+    <div class="metric-card"><div class="label">Most expensive city</div><div class="value">${mostExpensive.city.split(',')[0]}</div><div class="sub">Equiv. ${fmt(equiv(mostExpensive))}</div></div>
+    <div class="metric-card"><div class="label">DFW CoL index</div><div class="value">105</div><div class="sub">100 = U.S. average</div></div>
+  `;
+
+  document.getElementById('tableBody').innerHTML = data.map((c) => {
+    const e = equiv(c);
+    const d = delta(c);
+    const eh = equivHome(c);
+    const rowClass = c.base ? ' class="dfw-row"' : '';
+    const dClass = d > 0 ? 'badge badge-dn' : d < 0 ? 'badge badge-up' : 'badge badge-eq';
+    const dText = c.base ? '—' : `<span class="${dClass}">${pct(d)}</span>`;
+    return `<tr${rowClass}>
+      <td style="color:var(--color-text-tertiary);font-size:11px;">${c.rank}</td>
+      <td class="city-cell">${c.city}${c.base ? ' <span style="font-size:10px;color:#185FA5;">●</span>' : ''}</td>
+      <td class="num">${c.col}</td>
+      <td class="num" style="font-weight:500;">${fmt(e)}</td>
+      <td class="num">${dText}</td>
+      <td class="num">${fmt(c.home)}</td>
+      <td class="num" style="color:var(--color-text-secondary);">${fmt(eh)}</td>
+      <td class="num">${fmt(c.rent)}</td>
+      <td class="num">$${c.gas.toFixed(2)}</td>
+      <td class="num">${c.grocery}</td>
+      <td>${verdict(c)}</td>
+    </tr>`;
+  }).join('');
+}
+
+document.getElementById('sortSel').addEventListener('change', e => { sortKey = e.target.value; render(); });
+document.getElementById('orderSel').addEventListener('change', e => { sortOrder = e.target.value; render(); });
+document.getElementById('search').addEventListener('input', e => { searchVal = e.target.value; render(); });
+
+render();
+</script>
+</body>
+</html>
