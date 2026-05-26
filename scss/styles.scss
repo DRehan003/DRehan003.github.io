@@ -398,6 +398,15 @@ footer {
         font-size: 2.25em;
         margin-bottom: 15px;
     }
+
+    h3 {
+        color: rgba(93, 68, 68, 0.75);
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        font-size: 1.25em;
+        margin: 5px 0 0;
+        letter-spacing: 0.02em;
+    }
 }
 
 .profile-image {
@@ -482,9 +491,10 @@ footer {
     }
 
     p {
-        color: $text;
+        color: #48576c;
         margin: 0;
         font-size: 18px;
+        font-weight: 400;
         line-height: 1.7;
     }
 
@@ -522,7 +532,7 @@ footer {
     margin: 0 auto 10px auto;
     padding: 12px 20px;
     border: 1px solid $border;
-    border-left: 4px solid $base-color;
+    border-left: 4px solid #000;
     background: $background;
     text-align: left;
     color: $heading;
@@ -608,7 +618,6 @@ footer {
 .vtimeline-point {
     position: relative;
     display: block;
-    vertical-align: top;
     margin-bottom: 30px;
 }
 
