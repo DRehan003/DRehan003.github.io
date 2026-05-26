@@ -30,7 +30,7 @@
 
         $('html, body').animate({
             scrollTop: scrollDistance + 'px'
-        }, Math.abs(window.pageYOffset - $(heading).offset().top) / 1);
+        }, 500);
 
         // Hide the menu once clicked if mobile
         if ($('header').hasClass('active')) {
@@ -56,8 +56,8 @@
     // Create timeline
     $('#experience-timeline').each(function() {
 
-        $this = $(this); // Store reference to this
-        $userContent = $this.children('div'); // user content
+        const $this = $(this); // Store reference to this
+        const $userContent = $this.children('div'); // user content
 
         // Create each timeline block
         $userContent.each(function() {
@@ -89,12 +89,5 @@
         $('header, body').removeClass('active');
     });
 
-    // Load additional projects
-    $('#view-more-projects').click(function(e){
-        e.preventDefault();
-        $(this).fadeOut(300, function() {
-            $('#more-projects').fadeIn(300);
-        });
-    });
 
 })(jQuery);

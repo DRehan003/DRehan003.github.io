@@ -18,13 +18,14 @@
         3. Global Styles
         4. Lead Styles
         5. About Styles
-        6. Experience Styles
-        7. Education Styles
-        8. Project Styles
-        9. Skills Styles
-        10. Contact Styles
-        11. Optional Section Styles
-        12. Media Queries
+        6. Certifications Styles
+        7. Experience Styles
+        8. Education Styles
+        9. Project Styles
+        10. Skills Styles
+        11. Contact Styles
+        12. Optional Section Styles
+        13. Media Queries
 */
 
 /*
@@ -35,7 +36,7 @@
 
 // Define base and accent colors
 $base-color: #34a9db;
-$base-color-hover: darken($base-color, 0%);
+$base-color-hover: darken($base-color, 10%);
 
 // Define background colors
 $background: #fff;
@@ -43,10 +44,15 @@ $background-alt: #f2f2f5;
 
 // Define border colors
 $border: #dcd9d9;
+$border-light: #e6e6e6;
 
 // Define text colors
 $heading: #374054;
 $text: #74808a;
+$text-muted: #7e8890;
+
+// Define UI colors
+$hover-bg: #eee;
 
 /*
     ---------------------
@@ -94,6 +100,10 @@ body {
     }
 }
 
+body p {
+    line-height: 1.7;
+}
+
 // No JS styles
 .no-js {
     #experience-timeline {
@@ -101,7 +111,7 @@ body {
             background: $background;
             padding: 10px;
             margin-bottom: 10px;
-            border: px solid $border;
+            border: 1px solid $border;
 
             h3 {
                 font-size: 1.5em;
@@ -114,7 +124,7 @@ body {
             h4 {
                 font-size: 1.2em;
                 font-weight: 300;
-                color: #7e8890;
+                color: $text-muted;
                 margin: 0 0 15px 0;
             }
 
@@ -174,7 +184,7 @@ header {
         &:hover {
             color: $base-color-hover;
             text-decoration: none;
-            background: #eee;
+            background: $hover-bg;
             border-radius: 4px;
         }
 
@@ -363,6 +373,11 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
 
     h1, h2 {
         margin: 0;
@@ -383,6 +398,19 @@ footer {
         font-size: 2.25em;
         margin-bottom: 15px;
     }
+}
+
+.profile-image {
+    width: 240px;
+    height: 250px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.second-page #lead {
+    background: rgb(51, 123, 182);
+    background-image: none;
 }
 
 #lead-overlay {
@@ -421,7 +449,7 @@ footer {
     i {
         animation: pulsate 1.5s ease;
         animation-iteration-count: infinite;
-        padding-top: 5px;;
+        padding-top: 5px;
     }
 }
 
@@ -456,12 +484,54 @@ footer {
     p {
         color: $text;
         margin: 0;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        max-width: 1000px;
+        margin: 0 auto;
     }
 }
 
 /*
+    ------------------------------------
+    ----- 6. Certifications Styles -----
+    ------------------------------------
+*/
+
+#certifications {
+    padding: 50px 15px;
+    border-bottom: 1px solid $border;
+    text-align: center;
+
+    h2 {
+        color: $heading;
+        margin-bottom: 30px;
+    }
+}
+
+.certification-item {
+    display: block;
+    max-width: 500px;
+    margin: 0 auto 10px auto;
+    padding: 12px 20px;
+    border: 1px solid $border;
+    border-left: 4px solid $base-color;
+    background: $background;
+    text-align: left;
+    color: $heading;
+    font-size: 1em;
+}
+
+/*
     --------------------------------
-    ----- 6. Experience Styles -----
+    ----- 7. Experience Styles -----
     --------------------------------
 */
 
@@ -508,7 +578,7 @@ footer {
 .vtimeline-content {
     margin-left: 350px;
     background: #fff;
-    border: 1px solid #e6e6e6;
+    border: 1px solid $border-light;
     padding: 15px;
     border-radius: 3px;
     text-align: left;
@@ -524,7 +594,7 @@ footer {
     h4 {
         font-size: 1.2em;
         font-weight: 300;
-        color: #7e8890;
+        color: $text-muted;
         margin: 0 0 15px 0;
     }
 
@@ -567,12 +637,12 @@ footer {
     left: 0;
     top: 10px;
     font-weight: 300;
-    color: #374054;
+    color: $heading;
 }
 
 /*
     -------------------------------
-    ----- 7. Education Styles -----
+    ----- 8. Education Styles -----
     -------------------------------
 */
 
@@ -625,9 +695,9 @@ footer {
 }
 
 /*
-    -------------------------------
-    ----- 8. Project Styles -----
-    -------------------------------
+    ------------------------------
+    ----- 9. Project Styles ------
+    ------------------------------
 */
 
 #projects {
@@ -648,10 +718,25 @@ footer {
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .project-image {
-    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+}
+
+.project-image img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 .project-info {
@@ -689,9 +774,9 @@ footer {
 }
 
 /*
-    -------------------------------
-    ----- 9. Skills Styles -----
-    -------------------------------
+    ------------------------------
+    ----- 10. Skills Styles ------
+    ------------------------------
 */
 
 #skills {
@@ -722,9 +807,24 @@ footer {
     }
 }
 
+.skills-group {
+    margin-bottom: 20px;
+}
+
+.skills-group-title {
+    display: block;
+    width: 100%;
+    color: $text;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 0 0 8px 0;
+    text-align: center;
+}
+
 /*
     -------------------------------
-    ----- 10. Contact Styles -----
+    ----- 11. Contact Styles ------
     -------------------------------
 */
 
@@ -789,7 +889,7 @@ footer {
 
 /*
     ---------------------------------------
-    ----- 11. Optional Section Styles -----
+    ----- 12. Optional Section Styles -----
     ---------------------------------------
 */
 
@@ -837,7 +937,7 @@ footer {
 
 /*
     -----------------------------
-    ----- 12. Media Queries -----
+    ----- 13. Media Queries -----
     -----------------------------
 */
 
@@ -958,16 +1058,33 @@ footer {
         }
     }
 
+    .project {
+        height: auto;
+    }
+
     .project-image {
-        display: none;
+        order: 2;
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+    .project-image img {
+        width: 100%;
+        max-height: 180px;
+        object-fit: cover;
+        margin: 0;
     }
 
     .project-info {
+        order: 1;
         position: relative;
         margin: 0;
-        padding: 30px 15px;
+        padding: 20px 15px;
         top: auto;
         transform: none;
+        width: 100%;
+        margin-left: 0;
     }
 
     footer {

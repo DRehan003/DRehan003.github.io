@@ -41,6 +41,8 @@
   .wrap { max-width: 1200px; margin: 0 auto; }
   .top-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 1.5rem; }
   .top-bar h1 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); flex: 1; min-width: 200px; }
+  .back-link { font-size: 13px; color: var(--color-text-secondary); text-decoration: none; white-space: nowrap; }
+  .back-link:hover { color: var(--color-text-primary); }
   .filter-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .filter-row label { font-size: 13px; color: var(--color-text-secondary); }
   .filter-row select, .filter-row input {
@@ -84,6 +86,7 @@
 <body>
 <div class="wrap">
   <div class="top-bar">
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
     <h1>$100,000 DFW salary — equivalent purchasing power across top 30 U.S. cities</h1>
     <div class="filter-row">
       <div class="search-wrap">

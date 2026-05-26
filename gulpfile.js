@@ -1,10 +1,11 @@
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
 const uglify = require('gulp-uglify');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const wait = require('gulp-wait');
-const babel = require('gulp-babel');;
+const babel = require('gulp-babel');
 const rename = require('gulp-rename');
+const autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('scripts', function() {
     return gulp.src('./js/scripts.js')
@@ -30,10 +31,11 @@ gulp.task('styles', function () {
     return gulp.src('./scss/styles.scss')
         .pipe(wait(250))
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(autoprefixer({ overrideBrowserslist: ['last 2 versions'] }))
         .pipe(gulp.dest('./css'));
 });
 
 gulp.task('watch', function() {
     gulp.watch('./js/scripts.js', gulp.series('scripts'));
-    gulp.watch('./scss/styles.scss', gulp.series('styles'));
+    gulp.watch('./scss/**/*.scss', gulp.series('styles'));
 });
