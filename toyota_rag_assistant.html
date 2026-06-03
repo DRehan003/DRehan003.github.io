@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Toyota Agentic RAG AI Assistant — an agentic RAG support system built with LangGraph, OpenAI, and MongoDB Atlas Vector Search by Danyal Rehan.">
+    <title>Toyota Agentic RAG AI Assistant | Danyal Rehan</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body class="second-page">
+    <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <li>
+                <a href="index.html" onclick="window.location.href='index.html'; return true;">Back to Main Menu</a>
+            </li>
+        </ul>
+    </header>
+
+    <div id="lead">
+        <div id="lead-content">
+            <h1>Toyota Agentic RAG AI Assistant</h1>
+            <h2>Built with LangGraph, OpenAI GPT-4o mini, and MongoDB Atlas Vector Search</h2>
+        </div>
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+        </div>
+    </div>
+
+    <div id="github-link" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                <h3>
+                    View the source code on <a href="https://github.com/DRehan003/cts-assistant/tree/main" target="_blank"><strong>GitHub</strong></a>
+                    &nbsp;|&nbsp;
+                    <a href="https://youtu.be/NUSMDZOq1wY" target="_blank"><strong>Watch the Demo</strong></a>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div id="overview" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Overview</h2>
+                <p>
+                    This project is an agentic Retrieval-Augmented Generation (RAG) AI assistant designed and deployed for a Toyota
+                    web application. The assistant is capable of answering vehicle-specific support questions in real time;
+                    understanding the intent behind a query, determining whether it has enough information to answer, and
+                    intelligently asking follow-up questions when needed before retrieving a semantically accurate response.
+                </p>
+                <p>
+                    The system was built using a <strong>LangGraph</strong> multi-turn pipeline, <strong>OpenAI's GPT-4o mini</strong> for language
+                    understanding and response generation, and <strong>MongoDB Atlas Vector Search</strong> for semantic retrieval from a
+                    knowledge base of Toyota support documents stored as vector embeddings.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <div id="how-it-works" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">How It Works</h2>
+                <p>
+                    The assistant follows a structured, multi-step pipeline from the moment a user submits a query to the moment
+                    a response is delivered back to the frontend. Each step is handled by a dedicated node in the LangGraph agent graph.
+                </p>
+                <img src="images/Langgraph.png" alt="LangGraph pipeline diagram showing the order of steps" style="max-width: 100%; display: block; margin: 20px auto;">
+                <br>
+
+                <h2>Step 1: User Submits a Query</h2>
+                <p>
+                    The pipeline begins when a user types a question into the Toyota web application's support interface.
+                    This query is passed into the LangGraph agent as the initial input to the graph.
+                </p>
+
+                <h2>Step 2: Follow-Up Question Check</h2>
+                <p>
+                    Before retrieving any information, the LangGraph agent evaluates whether the query contains enough context
+                    to generate a useful answer.
+                </p>
+                <p>
+                    <strong>Example — No follow-up needed:</strong><br>
+                    <em>"Does my 2008 Sienna have wireless CarPlay?"</em><br>
+                    This query includes both the model year (2008) and the vehicle model (Sienna), so the agent has all the
+                    information it needs to proceed directly to retrieval.
+                </p>
+                <p>
+                    <strong>Example — Follow-up required:</strong><br>
+                    <em>"Does my car have wireless CarPlay?"</em><br>
+                    This query is missing the vehicle model and year. The agent detects the ambiguity and asks the user: <em>"What is the
+                    model of your vehicle?"</em> before continuing. This back-and-forth continues until all necessary context
+                    has been collected.
+                </p>
+                <p>
+                    Once all required information is in hand, the agent proceeds to the next step.
+                </p>
+
+                <h2>Step 3: Query Embedding</h2>
+                <p>
+                    With a fully-resolved query, the agent passes the question into an <strong>embeddings model</strong> — included
+                    in the project repository. This model converts the natural language query into a high-dimensional numeric
+                    vector (an embedding) that captures the semantic meaning of the question.
+                </p>
+                <p>
+                    This vector representation is what allows the system to search for <em>meaning</em>, not just matching keywords.
+                    Two questions that are worded differently but mean the same thing will produce similar vectors, enabling
+                    accurate retrieval even when phrasing varies.
+                </p>
+
+                <h2>Step 4: MongoDB Atlas Vector Search</h2>
+                <p>
+                    The query vector is sent to <strong>MongoDB Atlas Vector Search</strong>, which searches the Toyota support knowledge
+                    base for the most semantically similar documents. This database contains answers to a wide range of vehicle
+                    support questions — all pre-processed and stored as vector embeddings at indexing time.
+                </p>
+                <p>
+                    The search returns the most relevant document(s) from the knowledge base, representing the best-matched
+                    answer to the user's query.
+                </p>
+
+                <h2>Step 5: Answer Generation (GPT-4o mini)</h2>
+                <p>
+                    The original user query and the retrieved document(s) from the vector search are passed together into
+                    <strong>OpenAI's GPT-4o mini</strong> model as a prompt. GPT-4o mini acts as the answer generation layer. It takes the
+                    raw retrieved content and synthesizes it into a clear, natural-language response tailored to what the user asked. 
+                    This specific model was chosen for its balance of strong language understanding capabilities and cost-effectiveness, making it ideal for real-time applications like this one.    
+                </p>
+                <p>
+                    This step is what distinguishes a RAG system from a plain database lookup: rather than returning a raw document,
+                    the LLM understands the context and formats the answer in a way that directly addresses the user's question.
+                </p>
+
+                <h2>Step 6: Response Delivered to the User</h2>
+                <p>
+                    The generated response is returned through the pipeline and displayed on the Toyota web application's
+                    frontend, completing the interaction. The entire process happens in real time. 
+                    From query submission to response delivery, the system is designed to operate with minimal latency, 
+                    providing users with quick and accurate answers to their support questions.
+                    
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech-stack" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Tech Stack</h2>
+                <ul>
+                    <li><strong>LangGraph</strong> — multi-turn agentic pipeline; each stage of the workflow (follow-up check, embedding, retrieval, generation) is a node in the graph</li>
+                    <li><strong>OpenAI GPT-4o mini</strong> — answer generation LLM that converts the retrieved document and user query into a natural-language response</li>
+                    <li><strong>OpenAI Embeddings Model</strong> — converts queries into vector representations for semantic search</li>
+                    <li><strong>MongoDB Atlas Vector Search</strong> — stores the Toyota knowledge base as vectors and performs semantic similarity search at query time</li>
+                </ul>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <div id="key-highlights" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Key Highlights</h2>
+                <p>
+                    <strong>Context-Aware Follow-Up Logic:</strong><br>
+                    The agent does not blindly retrieve on every query. It first reasons about whether the query is complete
+                    enough to answer, and only proceeds once it has gathered sufficient context. This prevents incorrect or
+                    irrelevant responses caused by underspecified questions.
+                </p>
+                <p>
+                    <strong>Semantic Retrieval Over Keyword Search:</strong><br>
+                    By converting queries to embeddings before searching, the system understands the <em>meaning</em> of a question
+                    rather than looking for exact word matches. This makes it significantly more robust to phrasing variations
+                    and natural language diversity.
+                </p>
+                <br>
+
+                <img src="images/ai_slide.png" alt="Toyota Agentic RAG AI Assistant" style="max-width: 100%; display: block; margin: 0 auto;">
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2026</span> Danyal Rehan
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/DRehan003" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/danyal-rehan/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@danyalrehan" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+</body>
+
+</html>

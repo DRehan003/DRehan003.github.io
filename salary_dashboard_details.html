@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Salary and City Comparison Dashboard: an interactive tool that adjusts a Dallas salary across the top 30 most populous U.S. cities using cost of living, home prices, rent, gas, and grocery indexes. Built by Danyal Rehan.">
+    <title>Salary &amp; City Comparison Dashboard | Danyal Rehan</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body class="second-page">
+    <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <li>
+                <a href="index.html" onclick="window.location.href='index.html'; return true;">Back to Main Menu</a>
+            </li>
+        </ul>
+    </header>
+
+    <div id="lead">
+        <div id="lead-content">
+            <h1>Salary &amp; City Comparison Dashboard</h1>
+            <h2>Interactive Cost of Living Adjusted Salary Tool</h2>
+        </div>
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+        </div>
+    </div>
+
+    <div id="dashboard-link" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                <h3>
+                    Try it yourself: <a href="salary_city_comparison_dashboard_7.html" target="_blank"><strong>View Dashboard</strong></a>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overview -->
+    <div id="overview" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Overview</h2>
+                <p>
+                    This dashboard takes a <strong>$100,000 salary based in Dallas, TX (DFW)</strong> and calculates its
+                    equivalent purchasing power across the <strong>top 30 most populous cities in the United States</strong>.
+                    Rather than comparing raw salaries, the tool adjusts for the true cost of living in each city,
+                    giving a realistic picture of what that income is actually worth depending on where you live.
+                </p>
+                <p>
+                    The adjustment accounts for five cost factors: overall cost of living index, median home prices,
+                    median rent, gas index, and grocery index. Every figure recalculates in real time as the user
+                    interacts with the dashboard.
+                </p>
+                <br>
+                <img src="images/salary_dashboard..jpeg" alt="Salary and City Comparison Dashboard screenshot" style="max-width: 100%; display: block; margin: 0 auto;">
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div id="features" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Features</h2>
+                <ul>
+                    <li><strong>Real-time salary adjustment:</strong> Every figure across all 30 cities updates instantly as inputs change.</li>
+                    <li><strong>Sortable columns:</strong> Sort the table by equivalent salary, median home price, median rent, grocery index, or overall cost of living.</li>
+                    <li><strong>City search:</strong> Search for any specific city to jump directly to its adjusted figures.</li>
+                    <li><strong>Five cost factors:</strong> Cost of living index, median home prices, median rent, gas index, and grocery index are all factored into the salary equivalency calculation.</li>
+                </ul>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Findings -->
+    <div id="key-findings" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Notable Results</h2>
+                <p>
+                    Some of the results from the DFW baseline are striking. A few highlights from the data:
+                </p>
+                <ul>
+                    <li>A <strong>$100K salary in DFW</strong> is equivalent to only <strong>$45K in San Francisco</strong> after adjusting for cost of living.</li>
+                    <li>In cities like <strong>El Paso and Indianapolis</strong>, purchasing power actually increases relative to DFW; the same income goes further.</li>
+                    <li><strong>Austin</strong>, just three hours from Dallas, erodes roughly <strong>13% of buying power</strong> despite being in the same state.</li>
+                </ul>
+                <p>
+                    These results illustrate how significantly geography affects real compensation, even within the same region.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who It's For -->
+    <div id="use-case" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Who It Is For</h2>
+                <p>
+                    This tool is particularly useful for recent graduates evaluating job offers across multiple cities,
+                    professionals considering relocation, or anyone curious about how their current salary compares
+                    in real purchasing power terms to other parts of the country. A $120K offer in New York and a
+                    $90K offer in Dallas are not directly comparable without this kind of adjustment.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2026</span> Danyal Rehan
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/DRehan003" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/danyal-rehan/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@danyalrehan" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+</body>
+
+</html>

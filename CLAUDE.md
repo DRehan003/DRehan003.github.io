@@ -31,6 +31,10 @@ npx gulp scripts   # js/scripts.js → js/scripts.min.js
 - **`css/bootstrap.min.css`** and **`libs/font-awesome/`** — vendored third-party libraries, do not modify.
 - **Contact form** — handled by [Formspree](https://formspree.io/f/xldgnkdw) (no server-side code needed).
 
+## Writing Style
+
+- **No dashes** of any kind (em dashes, en dashes, or hyphens used as dashes) in any written content. Replace with commas, periods, semicolons, or colons as appropriate.
+
 ## Adding Content
 
 - **New project:** Add a `.project` div block in `index.html` under `#projects`, add a project image to `images/`, and optionally create a new standalone HTML page for details.

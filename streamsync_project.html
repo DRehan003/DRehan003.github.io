@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="StreamSync, Agile Product and Sprint Planning project. Behavior-driven streaming recommendation engine designed in Figma by Danyal Rehan.">
+    <title>StreamSync | Danyal Rehan</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body class="second-page">
+    <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <header>
+        <div id="mobile-menu-close">
+            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <ul id="menu" class="shadow">
+            <li>
+                <a href="index.html" onclick="window.location.href='index.html'; return true;">Back to Main Menu</a>
+            </li>
+        </ul>
+    </header>
+
+    <div id="lead">
+        <div id="lead-content">
+            <h1>StreamSync</h1>
+            <h2>Agile Product &amp; Sprint Planning: Behavior-Driven Recommendation Engine</h2>
+        </div>
+        <div id="lead-down">
+            <span>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+        </div>
+    </div>
+
+    <div id="figma-link" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <br>
+                <h3>
+                    Explore the interactive prototype on <a href="https://www.figma.com/proto/tddLp4HaN6EqhjNclKEMMb/StreamSync?node-id=40-159&t=6fQ6HVMOVE9V5MDl-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=40%3A159" target="_blank"><strong>Figma</strong></a>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Problem -->
+    <div id="business-problem" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Business Problem</h2>
+                <p>
+                    StreamSync is a mid-sized independent streaming platform operating across North America with a catalog of
+                    roughly 14,000 titles spanning films, documentaries, short-form series, and licensed third-party content.
+                    The platform had seen a <strong>34% drop in average session time</strong> over the past two quarters. Internal data
+                    suggested users were churning primarily during the content discovery phase, spending several minutes
+                    browsing before abandoning the session entirely without watching anything.
+                </p>
+                <p>
+                    The existing recommendation logic was rule-based, relying on genre tags and broad popularity rankings,
+                    with no mechanism for adapting to individual behavioral signals such as partial watches, rewatch patterns,
+                    time-of-day preferences, or mood-adjacent browsing. Leadership approved a phased initiative to replace
+                    this static engine with a personalized, behavior-driven system.
+                </p>
+                <p>
+                    The challenge was significant: data infrastructure was fragmented across three internal teams with no
+                    unified schema, there was no consensus on handling cold-start users (fewer than five interactions), and
+                    the system had to balance personalization fidelity, business content promotion goals, infrastructure
+                    budget constraints, and a user experience that felt intuitive rather than manipulative.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Roles -->
+    <div id="team-roles" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Team Roles</h2>
+                <p>Danyal served as <strong>Scrum Master and Product Manager</strong>, leading a cross-functional team of six.</p>
+                <br>
+                <strong>Roles led:</strong>
+                <ul>
+                    <li>Developers (×2)</li>
+                    <li>Designer</li>
+                    <li>Tester</li>
+                    <li>Business Analyst</li>
+                </ul>
+                <br>
+                <strong>Responsibilities:</strong>
+                <ul>
+                    <li>Defined and prioritized the product backlog</li>
+                    <li>Facilitated sprint planning and retrospectives</li>
+                    <li>Kept the team aligned and on track with deliverables across the 3-month roadmap</li>
+                    <li>Built the Figma prototype from scratch</li>
+                </ul>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- MVP Scope -->
+    <div id="mvp-scope" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">MVP Scope</h2>
+                <p>
+                    The recommendation engine follows three core steps at launch:
+                </p>
+                <ol>
+                    <li><strong>Track &amp; Analyze User Behavior:</strong> Capture all behavioral events (play, pause, skip, rewind, abandonment) in a unified schema across devices, and retrain the model on a rolling 90-day behavioral window.</li>
+                    <li><strong>Create Personalized Recommendations:</strong> Generate per-profile recommendations that factor in engagement depth (e.g. watching past 50% vs. abandoning in the first five minutes), time-of-day patterns, and content rating filters for children's profiles.</li>
+                    <li><strong>Generate the Homepage:</strong> Surface a personalized row of titles every time the user opens the app, returning results within 200ms at the 95th percentile under peak load.</li>
+                </ol>
+                <p>
+                    Family profiles (up to 5 per account) and the Like/Dislike feedback button are both accessible at launch.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Requirements (MVP) -->
+    <div id="system-requirements" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">MVP System Requirements</h2>
+                <p>The following 13 user stories make up the MVP product backlog. Stories with detailed acceptance criteria are expanded below.</p>
+                <br>
+
+                <h2>User Stories</h2>
+
+                <p><strong>1.</strong> As a registered viewer, I want to receive a personalized homepage row of recommended titles every time I open the app, so that I can start watching something relevant without spending time searching.</p>
+
+                <p><strong>2.</strong> As a registered viewer, I want the system to update my recommendations within the same session after I finish or abandon a title, so that subsequent suggestions reflect what I just watched.</p>
+
+                <p><strong>4.</strong> As a tester, I want to verify that a user with fewer than five watch events receives fallback recommendations based on regional popularity and onboarding genre selections rather than a blank or broken row, so that cold-start users are not shown an empty or degraded experience.</p>
+                <blockquote>
+                    <strong>Acceptance Criteria:</strong> The system does not show incomplete sections. New users see popular or trending content. The homepage shows at least 10 titles with no blanks or incomplete sections. If the user selects a genre preference during account creation, those genres must be reflected in the initial recommendations. The initial recommendations only need to be consistent until the user completes their 5th watch event.
+                </blockquote>
+
+                <p><strong>5.</strong> As a household account holder, I want to create up to five viewer profiles under a single subscription, so that my recommendations are not contaminated by the watch history of other people in my home.</p>
+                <blockquote>
+                    <strong>Acceptance Criteria:</strong> Users can create up to five profiles. Each profile has a separate watch history. Recommendations change when switching profiles. Switching between profiles loads only the selected profile's recommendations with no bleed or influence from other profiles in the same household account.
+                </blockquote>
+
+                <p><strong>6.</strong> As a registered viewer, I want to mark a recommendation as "not interested," so that titles I dismiss stop appearing across future recommendation surfaces.</p>
+                <blockquote>
+                    <strong>Acceptance Criteria:</strong> Users can interact with the dislike button to remove content from recommendations, and this change is applied across all devices. The title immediately disappears from the recommendations section and no longer appears on any other devices linked to the same account and profile. It must never reappear at any point in the future regardless of how much time has passed.
+                </blockquote>
+
+                <p><strong>7.</strong> As a data engineer, I want all behavioral events, including play, pause, skip, rewind, and abandonment, to be captured in a unified event schema regardless of which device the user is on, so that the recommendation model trains on consistent and complete signal data.</p>
+
+                <p><strong>8.</strong> As a tester, I want to verify that dismissing a title on one device is reflected in recommendations on all other devices linked to the same profile within 60 seconds, so that user feedback is propagated in near real-time across the platform.</p>
+
+                <p><strong>10.</strong> As a registered viewer, I want the system to recognize that my viewing habits on weekend evenings differ from my weekday patterns and surface content accordingly, so that recommendations feel contextually appropriate rather than generic.</p>
+
+                <p><strong>11.</strong> As a tester, I want to verify that a viewer profile with an exclusively children's content watch history never receives recommendations for titles flagged as mature, so that content filtering by rating is enforced at the recommendation layer and not only at playback.</p>
+                <blockquote>
+                    <strong>Acceptance Criteria:</strong> The algorithm showcases only children's content. Absolutely zero titles rated above PG appear anywhere in the recommendations section, even if the title is the most trending content at that time. The filter must work not just at playback but before recommendations have been generated.
+                </blockquote>
+
+                <p><strong>12.</strong> As a machine learning engineer, I want to retrain the recommendation model on a rolling 90-day behavioral window rather than full history, so that the system adapts to shifting user preferences without being anchored to stale data.</p>
+
+                <p><strong>15.</strong> As a tester, I want to verify that when a user's account is authenticated via the third-party SSO provider, their profile preferences and watch history load correctly and recommendations are not reset or reassigned to a different profile, so that the SSO integration does not corrupt personalization state.</p>
+
+                <p><strong>18.</strong> As a machine learning engineer, I want the recommendation inference pipeline to return results within 200 milliseconds at the 95th percentile under peak concurrent load, so that the homepage does not visibly delay on app open.</p>
+
+                <p><strong>19.</strong> As a registered viewer, I want the system to treat a title I watched more than halfway through differently from one I abandoned in the first five minutes, so that my engagement depth is factored into what gets recommended next.</p>
+
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hi-Fidelity Prototype -->
+    <div id="prototype" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Hi-Fidelity Prototype</h2>
+                <p>Designed in Figma by Danyal. The screens below show the profile selection flow, the personalized homepage with trending and continue-watching rows, and the like/dislike interaction overlay with a match percentage.</p>
+                <br>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; align-items: flex-start;">
+                    <div style="flex: 1; min-width: 200px; max-width: 280px; text-align: center;">
+                        <img src="images/streamsync_pdf_images/img-000.png" alt="StreamSync profile selection screen" style="width: 100%; border-radius: 8px;">
+                        <p style="margin-top: 8px; font-size: 0.9em; color: #74808a;">Profile Selection</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; max-width: 280px; text-align: center;">
+                        <img src="images/streamsync_pdf_images/img-001.jpg" alt="StreamSync personalized homepage with trending movies and continue watching" style="width: 100%; border-radius: 8px;">
+                        <p style="margin-top: 8px; font-size: 0.9em; color: #74808a;">Personalized Homepage</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; max-width: 280px; text-align: center;">
+                        <img src="images/streamsync_pdf_images/img-002.jpg" alt="StreamSync shows for you row with like and dislike overlay and match percentage" style="width: 100%; border-radius: 8px;">
+                        <p style="margin-top: 8px; font-size: 0.9em; color: #74808a;">Like / Dislike Feedback</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sprint Plan & Roadmap -->
+    <div id="sprint-plan" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Sprint Plan &amp; 3-Month Roadmap</h2>
+                <p>
+                    The project followed an <strong>Agile framework</strong> with <strong>2-week sprint intervals</strong> across 6 sprints over 3 months.
+                    MVP launch occurs after Sprint 4.
+                </p>
+                <br>
+                <img src="images/streamsync_pdf_images/img-003.png" alt="StreamSync 6-sprint roadmap visualization" style="max-width: 100%; display: block; margin: 0 auto;">
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Risk, Dependency, Assumption, Limitation -->
+    <div id="rdal" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Risk, Dependency, Assumption &amp; Limitation Analysis</h2>
+
+                <p><strong>Risks:</strong></p>
+                <ul>
+                    <li>Early recommendations may be inaccurate due to limited user data, potentially eroding user trust in the system.</li>
+                    <li>Over-indexing on business-promoted content (new or sponsored titles) risks making recommendations feel non-personal, undermining user confidence.</li>
+                </ul>
+
+                <p><strong>Dependencies:</strong></p>
+                <ul>
+                    <li>Adequate server and storage infrastructure to operate at scale.</li>
+                    <li>Engineering support to build, maintain, and recover the system in the event of downtime.</li>
+                    <li>Active user engagement, including watch history and interaction data, to drive personalization.</li>
+                </ul>
+
+                <p><strong>Assumptions:</strong></p>
+                <ul>
+                    <li>What users watch and click on reflects what they actually like, especially when they engage with the Like/Dislike button.</li>
+                    <li>More personalized recommendations will increase time spent on the platform.</li>
+                </ul>
+
+                <p><strong>Limitations:</strong></p>
+                <ul>
+                    <li>Users who interact infrequently or don't watch significant content will see slower algorithm improvement.</li>
+                    <li>The system may surface repetitive or overly similar content, reducing content variety for some users.</li>
+                </ul>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testing -->
+    <div id="testing" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Testing &amp; Results</h2>
+                <p>
+                    Key testing focused on child account content filtering and cold-start user onboarding. A bug was identified
+                    where the PG content filter only activated at playback, not before recommendations were generated, and
+                    was fixed so filtering happens before the homepage renders. A separate issue where onboarding genre
+                    preferences were not being passed into the recommendation engine for new users was also resolved and validated.
+                </p>
+                <p>
+                    In a final validation with <strong>2,000 users</strong>, the system showed a significant improvement in average session
+                    time compared to StreamSync's baseline, and a measurable drop in users leaving before selecting content;
+                    this was the primary churn driver identified at the start of the project.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Presentation -->
+    <div id="presentation" class="background">
+        <div class="container">
+            <div class="row">
+                <br>
+                <h2 class="heading">Class Presentation</h2>
+                <p>
+                    The project was presented in front of the class, with Danyal leading the initiative. He walked the
+                    audience through the full breakdown of the project, covering the business problem, the system
+                    requirements, the sprint plan, the prototype, and the testing results, then fielded all questions
+                    the class had at the end of the presentation.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 copyright">
+                    <p>
+                        Copyright &copy; <span id="current-year">2026</span> Danyal Rehan
+                    </p>
+                </div>
+                <div class="col-sm-2 top">
+                    <span id="to-top">
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="col-sm-5 social">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/DRehan003" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/danyal-rehan/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@danyalrehan" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+</body>
+
+</html>
